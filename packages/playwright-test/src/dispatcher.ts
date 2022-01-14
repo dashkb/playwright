@@ -502,8 +502,8 @@ class Worker extends EventEmitter {
       projectIndex: testGroup.projectIndex,
       loader: loaderData,
     };
-    this.process.send({ method: 'init', params });
     await new Promise(f => this.process.once('message', f));  // Ready ack
+    this.process.send({ method: 'init', params });
   }
 
   run(testGroup: TestGroup) {
